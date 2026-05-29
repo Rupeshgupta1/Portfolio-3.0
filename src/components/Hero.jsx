@@ -1,8 +1,8 @@
-import githubIcon from "../assets/github.png";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
-import rupeshPhoto from "../assets/rupesh.png"; // apni image file ka naam sahi karo
+import rupeshPhoto from "../assets/rupesh.png";
+import githubIcon from "../assets/github.png";   // only once
 
 const Hero = () => {
   return (
@@ -37,7 +37,7 @@ const Hero = () => {
               className='flex items-center gap-2 bg-[#915EFF] hover:bg-[#7d3ef5] text-white px-5 py-3 rounded-xl font-medium transition-all duration-200'
             >
               <img
-                src='/src/assets/github.png'
+                src={githubIcon}    // ✅ fixed: using imported variable
                 alt='github'
                 className='w-5 h-5 object-contain invert'
               />
@@ -68,7 +68,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* 🔹 PHOTO – thoda aur left + thoda aur upar (right values aur badhayi, top values aur ghatayi) */}
+      {/* 🔹 PHOTO – thoda aur left + thoda aur upar */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}

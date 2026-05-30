@@ -74,7 +74,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
         className="absolute 
-        right-32 md:right-44 lg:right-56 
+        right-10 md:right-44 lg:right-56 
         top-[60px] md:top-[100px] lg:top-[140px] 
         w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 
         rounded-full overflow-hidden border-4 border-[#915EFF] shadow-2xl shadow-[#915EFF]/40 z-20"

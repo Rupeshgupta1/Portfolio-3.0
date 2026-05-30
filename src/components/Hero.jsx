@@ -1,15 +1,19 @@
+jsx
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 import rupeshPhoto from "../assets/rupesh.png";
-import githubIcon from "../assets/github.png";   // only once
+import githubIcon from "../assets/github.png";
 
 const Hero = () => {
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       {/* Left content: text + buttons */}
       <div
-        className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 z-10`}
+        className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} 
+        flex flex-row items-start gap-5 z-10 
+        /* 🔹 FIXED: Added responsive padding-right to clear the image space */
+        lg:pr-96 md:pr-72 pr-6`}
       >
         {/* Decorative vertical line */}
         <div className='flex flex-col justify-center items-center mt-5'>
@@ -23,7 +27,7 @@ const Hero = () => {
             Hi I am <span className='text-[#915EFF]'>Rupesh</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            MERN Stack &amp; Frontend Developer
+            MERN Stack & Frontend Developer
             <br className='sm:block hidden' />
             Building modern and scalable web applications
           </p>
@@ -37,7 +41,7 @@ const Hero = () => {
               className='flex items-center gap-2 bg-[#915EFF] hover:bg-[#7d3ef5] text-white px-5 py-3 rounded-xl font-medium transition-all duration-200'
             >
               <img
-                src={githubIcon}    // ✅ fixed: using imported variable
+                src={githubIcon}
                 alt='github'
                 className='w-5 h-5 object-contain invert'
               />
@@ -68,15 +72,18 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* 🔹 PHOTO – thoda aur left + thoda aur upar */}
+      {/* 🔹 PHOTO – Fixed Positioning & Sizing */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
         className="absolute 
-        right-10 md:right-44 lg:right-56 
+        /* 🔹 FIXED: Reduced right distance to move it closer to the corner */
+        right-4 md:right-10 lg:right-16 
+        /* 🔹 FIXED: Better vertical alignment for different screens */
         top-[60px] md:top-[100px] lg:top-[140px] 
-        w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 
+        /* 🔹 FIXED: More gradual scaling of image size */
+        w-32 h-32 sm:w-52 md:w-64 lg:w-80 
         rounded-full overflow-hidden border-4 border-[#915EFF] shadow-2xl shadow-[#915EFF]/40 z-20"
       >
         <img

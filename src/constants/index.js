@@ -130,7 +130,7 @@ const projects = [
       { name: "tailwind", color: "pink-text-gradient" },
     ],
     image: ghibliPortfolio,
-    source_code_link: "https://github.com/Rupeshgupta1",
+    source_code_link: "https://github.com/Rupeshgupta1/Portfolio-3.0.git",
     live_link: "#",
   },
 ];

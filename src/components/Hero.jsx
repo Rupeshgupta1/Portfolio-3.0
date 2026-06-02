@@ -11,14 +11,17 @@ const Hero = () => {
         className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} 
         flex flex-row items-start gap-5 z-10`}
       >
+        {/* Violet dot + line */}
         <div className='flex flex-col justify-center items-center mt-5'>
           <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
           <div className='w-1 sm:h-80 h-40 violet-gradient' />
         </div>
 
-        <div className='flex-1 flex flex-col sm:flex-row items-start justify-between gap-6'>
-          <div className='flex-1'>
-            {/* Open to Work Badge */}
+        {/* Content row */}
+        <div className='flex-1 flex flex-row items-start justify-between gap-4'>
+          
+          {/* Left: Text */}
+          <div className='flex-1 min-w-0'>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -64,23 +67,25 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Photo - hidden on very small screens */}
+          {/* Right: Photo - responsive, no overlap */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden xs:block w-32 h-32 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-60 lg:h-60 rounded-full overflow-hidden border-4 border-[#915EFF] shadow-2xl shadow-[#915EFF]/40 flex-shrink-0"
+            className="hidden sm:block flex-shrink-0 w-[120px] h-[120px] md:w-[160px] md:h-[160px] lg:w-[200px] lg:h-[200px] xl:w-[240px] xl:h-[240px] rounded-full overflow-hidden border-4 border-[#915EFF] shadow-2xl shadow-[#915EFF]/40 mt-2"
           >
             <img src={rupeshPhoto} alt="Rupesh Gupta" className="w-full h-full object-cover" />
           </motion.div>
+
         </div>
       </div>
 
-      {/* 3D Model - hidden on mobile for performance */}
+      {/* 3D Model */}
       <div className="absolute inset-0 pointer-events-none hidden sm:block">
         <ComputersCanvas />
       </div>
 
+      {/* Scroll indicator */}
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center z-10'>
         <a href='#about'>
           <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>

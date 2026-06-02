@@ -136,7 +136,7 @@ const projects = [
     ],
     image: ghibliPortfolio,
     source_code_link: "https://github.com/Rupeshgupta1/Portfolio-3.0.git",
-    live_link: "#",
+    live_link: "https://portfolio-3-0-cyan.vercel.app/",
   },
 ];
 

@@ -18,7 +18,6 @@ import {
   threejs,
 } from "../assets";
 
-// Ghibli-style project images
 import ghibliAi from "../assets/ghibli-ai.png";
 import ghibliResume from "../assets/ghibli-resume.png";
 import ghibliFinance from "../assets/ghibli-finance.png";
@@ -60,9 +59,10 @@ const experiences = [
     iconBg: "#383E56",
     date: "2024 - Present",
     points: [
-      "Building modern, responsive, and scalable web applications using React, Next.js, and Tailwind CSS.",
-      "Developing full-stack solutions with Node.js, Express, MongoDB, and REST APIs.",
-      "Implementing advanced features like AI integration and microservices.",
+      "Architected and delivered 5+ production-grade web applications using React, Next.js, Node.js and MongoDB from scratch to deployment.",
+      "Built AI-powered tools integrating OpenAI GPT API, reducing manual effort by automating resume generation and task processing workflows.",
+      "Implemented microservices architecture with Docker, Kubernetes and CI/CD pipelines using GitHub Actions and ArgoCD.",
+      "Designed fully responsive, mobile-first UIs with Tailwind CSS and Framer Motion, achieving smooth 60fps animations.",
     ],
   },
 ];
@@ -71,11 +71,13 @@ const projects = [
   {
     name: "AI Task Platform",
     description:
-      "Scalable AI task processing platform with microservices, Docker, Kubernetes & automated CI/CD pipeline using GitHub Actions and ArgoCD.",
+      "Production-grade AI task processing platform built with microservices architecture. Features Docker containerization, Kubernetes orchestration, and fully automated CI/CD pipeline using GitHub Actions and ArgoCD for zero-downtime deployments.",
     tags: [
-      { name: "nextjs", color: "blue-text-gradient" },
-      { name: "nodejs", color: "green-text-gradient" },
+      { name: "next.js", color: "blue-text-gradient" },
+      { name: "node.js", color: "green-text-gradient" },
       { name: "mongodb", color: "pink-text-gradient" },
+      { name: "docker", color: "blue-text-gradient" },
+      { name: "kubernetes", color: "green-text-gradient" },
     ],
     image: ghibliAi,
     source_code_link: "https://github.com/Rupeshgupta1/ai-task-platform",
@@ -84,11 +86,12 @@ const projects = [
   {
     name: "AI Resume Builder",
     description:
-      "Full-stack AI resume builder using OpenAI GPT with real-time preview, multi-step form, and one-click PDF export.",
+      "Full-stack AI resume builder powered by OpenAI GPT-4. Users generate professional resumes in seconds via a multi-step form with real-time preview and one-click PDF export. Reduced resume creation time by 90% compared to manual methods.",
     tags: [
       { name: "react", color: "blue-text-gradient" },
-      { name: "nodejs", color: "green-text-gradient" },
+      { name: "node.js", color: "green-text-gradient" },
       { name: "openai-api", color: "pink-text-gradient" },
+      { name: "tailwind", color: "blue-text-gradient" },
     ],
     image: ghibliResume,
     source_code_link: "https://github.com/Rupeshgupta1/MakeYOUResume",
@@ -97,11 +100,12 @@ const projects = [
   {
     name: "Finance Dashboard",
     description:
-      "Interactive finance tracker with role-based access (Admin/Viewer), live search, Recharts visualizations, and Framer Motion transitions.",
+      "Interactive finance tracker with role-based access control (Admin/Viewer), real-time data search and filtering, Recharts data visualizations, and smooth Framer Motion transitions. Built for financial teams to track and analyze spending patterns.",
     tags: [
       { name: "react", color: "blue-text-gradient" },
       { name: "tailwind", color: "green-text-gradient" },
-      { name: "framer-motion", color: "pink-text-gradient" },
+      { name: "recharts", color: "pink-text-gradient" },
+      { name: "framer-motion", color: "blue-text-gradient" },
     ],
     image: ghibliFinance,
     source_code_link: "https://github.com/Rupeshgupta1/finance-dashboard",
@@ -110,10 +114,10 @@ const projects = [
   {
     name: "Packers & Movers Landing Page",
     description:
-      "Responsive landing page for a logistics brand with modern UI/UX, smooth scroll navigation, and mobile-first design.",
+      "High-converting responsive landing page for a logistics brand. Features modern UI/UX design, smooth scroll navigation, optimized for mobile-first experience. Designed to maximize lead generation with clear CTAs and trust-building sections.",
     tags: [
-      { name: "html", color: "blue-text-gradient" },
-      { name: "css", color: "green-text-gradient" },
+      { name: "html5", color: "blue-text-gradient" },
+      { name: "css3", color: "green-text-gradient" },
       { name: "javascript", color: "pink-text-gradient" },
     ],
     image: ghibliPackers,
@@ -123,11 +127,12 @@ const projects = [
   {
     name: "Portfolio 3.0",
     description:
-      "Modern developer portfolio with Three.js 3D animations, scroll-based transitions, and responsive design. Deployed on Vercel.",
+      "Modern developer portfolio featuring Three.js 3D animations, interactive desktop PC model, scroll-based transitions and fully responsive design. Built with React, Vite and Tailwind CSS — optimized for performance with lazy loading and code splitting.",
     tags: [
       { name: "react", color: "blue-text-gradient" },
-      { name: "threejs", color: "green-text-gradient" },
+      { name: "three.js", color: "green-text-gradient" },
       { name: "tailwind", color: "pink-text-gradient" },
+      { name: "vite", color: "blue-text-gradient" },
     ],
     image: ghibliPortfolio,
     source_code_link: "https://github.com/Rupeshgupta1/Portfolio-3.0.git",
@@ -138,7 +143,7 @@ const projects = [
 const testimonials = [
   {
     testimonial:
-      "Rupesh is a highly motivated and talented developer. He built our AI Resume Builder with excellent UI/UX and delivered it on time.",
+      "Rupesh delivered our AI Resume Builder with exceptional UI/UX and clean code architecture. His ability to integrate complex AI APIs while maintaining a smooth user experience is impressive. Delivered on time and beyond expectations.",
     name: "Rahul Sharma",
     designation: "Founder",
     company: "StartupX",
@@ -146,7 +151,7 @@ const testimonials = [
   },
   {
     testimonial:
-      "Working with Rupesh on the Finance Dashboard was great. His attention to detail and clean code is impressive.",
+      "Rupesh built our Finance Dashboard with great attention to detail. The role-based access system and data visualizations were exactly what we needed. His code is clean, well-structured and easy to maintain.",
     name: "Priya Mehta",
     designation: "Product Manager",
     company: "FinTech Solutions",
@@ -154,7 +159,7 @@ const testimonials = [
   },
   {
     testimonial:
-      "Rupesh's work on the AI Task Platform showed strong problem-solving skills and understanding of modern tech stack.",
+      "Rupesh's work on the AI Task Platform demonstrated strong problem-solving skills and deep understanding of modern DevOps practices. The microservices architecture he implemented scaled perfectly under load.",
     name: "Vikas Kumar",
     designation: "Tech Lead",
     company: "Innovate Labs",

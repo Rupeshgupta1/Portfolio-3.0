@@ -18,11 +18,11 @@ import {
   threejs,
 } from "../assets";
 
-import ghibliAi from "../assets/ghibli-ai.png";
-import ghibliResume from "../assets/ghibli-resume.png";
-import ghibliFinance from "../assets/ghibli-finance.png";
-import ghibliPackers from "../assets/ghibli-packers.png";
-import ghibliPortfolio from "../assets/ghibli-portfolio.png";
+import ghibliAi from "../assets/ghibli-ai.webp";
+import ghibliResume from "../assets/ghibli-resume.webp";
+import ghibliFinance from "../assets/ghibli-finance.webp";
+import ghibliPackers from "../assets/ghibli-packers.webp";
+import ghibliPortfolio from "../assets/ghibli-portfolio.webp";
 
 export const navLinks = [
   { id: "about", title: "About" },

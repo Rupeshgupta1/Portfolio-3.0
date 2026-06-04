@@ -81,7 +81,7 @@ const projects = [
     ],
     image: ghibliAi,
     source_code_link: "https://github.com/Rupeshgupta1/ai-task-platform",
-    live_link: "https://blog-dashboard-wheat.vercel.app",
+    live_link: "https://ai-task-platform-rho.vercel.app",
   },
   {
     name: "AI Resume Builder",

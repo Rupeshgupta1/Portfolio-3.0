@@ -8,16 +8,16 @@ const Hero = () => {
   return (
     <section className="relative w-full min-h-screen mx-auto overflow-hidden">
 
-      {/* ===== DESKTOP LAYOUT ===== */}
-      <div className="hidden lg:flex absolute inset-0 top-[80px] max-w-7xl mx-auto px-6 flex-row items-start gap-5 z-10">
+      {/* ===== DESKTOP LAYOUT (lg+) ===== */}
+      <div className="hidden lg:flex absolute inset-0 top-[80px] max-w-7xl mx-auto px-6 flex-row items-start gap-5 z-10 pointer-events-none">
         {/* Violet dot line */}
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
           <div className="w-1 sm:h-80 h-40 violet-gradient" />
         </div>
 
-        {/* Left text - max 55% width so model fits right */}
-        <div className="flex flex-col max-w-[55%] mt-5">
+        {/* Left text - max 55% so model fits right */}
+        <div className="flex flex-col max-w-[55%] mt-5 pointer-events-auto">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -62,9 +62,19 @@ const Hero = () => {
             </a>
           </div>
         </div>
+
+        {/* Photo - top right on desktop */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="ml-auto mt-5 flex-shrink-0 w-[200px] h-[200px] xl:w-[240px] xl:h-[240px] rounded-full overflow-hidden border-4 border-[#915EFF] shadow-2xl shadow-[#915EFF]/40 pointer-events-auto"
+        >
+          <img src={rupeshPhoto} alt="Rupesh Gupta" className="w-full h-full object-cover" />
+        </motion.div>
       </div>
 
-      {/* 3D Model - desktop only, positioned right half, behind text via z-0 */}
+      {/* 3D Model - desktop only, z-0 so it stays behind text and photo */}
       <div className="hidden lg:block absolute inset-0 z-0">
         <ComputersCanvas />
       </div>
@@ -125,7 +135,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Profile Photo - mobile only, below buttons, centered, fills space till scroller */}
+        {/* Profile Photo - mobile only, below buttons, centered */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

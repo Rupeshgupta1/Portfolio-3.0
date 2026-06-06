@@ -135,9 +135,14 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* 3D Model */}
-      <div className="absolute inset-0 pointer-events-none hidden xl:block">
+      {/* 3D Model - sm aur upar */}
+      <div className="absolute inset-0 pointer-events-none hidden sm:block">
         <ComputersCanvas />
+      </div>
+
+      {/* Mobile glow fallback */}
+      <div className="absolute bottom-10 w-full flex justify-center sm:hidden z-0">
+        <div className="w-72 h-72 rounded-full bg-[#915EFF] blur-[120px] opacity-30" />
       </div>
 
       {/* Scroll Indicator */}

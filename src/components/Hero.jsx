@@ -80,7 +80,7 @@ const Hero = () => {
       </div>
 
       {/* ===== MOBILE LAYOUT (< lg) ===== */}
-      <div className="lg:hidden flex flex-col min-h-screen px-6 pt-[120px] pb-20 z-10 relative">
+      <div className="lg:hidden flex flex-col min-h-screen px-6 pt-[90px] pb-20 z-10 relative">
         {/* Top row: violet dot + text */}
         <div className="flex flex-row items-start gap-5">
           <div className="flex flex-col justify-center items-center mt-5">
@@ -142,7 +142,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex justify-center items-center mt-8 flex-1"
         >
-          <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-[#915EFF] shadow-2xl shadow-[#915EFF]/40">
+          <div className="w-72 h-72 rounded-full overflow-hidden border-4 border-[#915EFF] shadow-2xl shadow-[#915EFF]/40">
             <img src={rupeshPhoto} alt="Rupesh Gupta" className="w-full h-full object-cover" />
           </div>
         </motion.div>

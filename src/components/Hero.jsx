@@ -82,7 +82,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="sm:hidden w-44 h-44 rounded-full overflow-hidden border-4 border-[#915EFF] shadow-2xl shadow-[#915EFF]/40 self-center"
+            className="sm:hidden w-64 h-64 rounded-full overflow-hidden border-4 border-[#915EFF] shadow-2xl shadow-[#915EFF]/40 self-center mt-4"
           >
             <img src={rupeshPhoto} alt="Rupesh Gupta" className="w-full h-full object-cover" />
           </motion.div>

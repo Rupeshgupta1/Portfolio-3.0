@@ -70,7 +70,7 @@ const experiences = [
 
 const projects = [
   {
-  name: "AIVOA — AI Pharma Complaint Management System",
+  name: "AI powered Pharma Complaint Management System",
   description:
     "AI-powered customer complaint intake system for pharmaceutical manufacturing (API/FDF). An AI copilot built on LangGraph and Groq extracts complaint details from natural language or uploaded documents, auto-fills the form, and generates a risk assessment with severity, suggested next action, and CAPA recommendations. Also includes duplicate complaint detection and a completeness checker.",
   tags: [

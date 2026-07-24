@@ -23,6 +23,7 @@ import ghibliResume from "../assets/ghibli-resume.webp";
 import ghibliFinance from "../assets/ghibli-finance.webp";
 import ghibliPackers from "../assets/ghibli-packers.webp";
 import ghibliPortfolio from "../assets/ghibli-portfolio.webp";
+import aivoaComplaint from "../assets/aivoa-complaint.png";
 
 export const navLinks = [
   { id: "about", title: "About" },
@@ -68,6 +69,21 @@ const experiences = [
 ];
 
 const projects = [
+  {
+  name: "AIVOA — AI Pharma Complaint Management System",
+  description:
+    "AI-powered customer complaint intake system for pharmaceutical manufacturing (API/FDF). An AI copilot built on LangGraph and Groq extracts complaint details from natural language or uploaded documents, auto-fills the form, and generates a risk assessment with severity, suggested next action, and CAPA recommendations. Also includes duplicate complaint detection and a completeness checker.",
+  tags: [
+    { name: "react", color: "blue-text-gradient" },
+    { name: "fastapi", color: "green-text-gradient" },
+    { name: "langgraph", color: "pink-text-gradient" },
+    { name: "redux", color: "blue-text-gradient" },
+  ],
+  image: aivoaComplaint,
+  source_code_link: "https://github.com/Rupeshgupta1/AI-powered-pharma-customer-complaint-Management-system",
+  live_link: "",
+},
+
   {
     name: "AI Task Platform",
     description:

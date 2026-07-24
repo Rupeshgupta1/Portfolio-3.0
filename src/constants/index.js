@@ -69,7 +69,7 @@ const experiences = [
 ];
 
 const projects = [
-  {
+ {
   name: "AI powered Pharma Complaint Management System",
   description:
     "AI-powered customer complaint intake system for pharmaceutical manufacturing (API/FDF). An AI copilot built on LangGraph and Groq extracts complaint details from natural language or uploaded documents, auto-fills the form, and generates a risk assessment with severity, suggested next action, and CAPA recommendations. Also includes duplicate complaint detection and a completeness checker.",
@@ -81,9 +81,8 @@ const projects = [
   ],
   image: aivoaComplaint,
   source_code_link: "https://github.com/Rupeshgupta1/AI-powered-pharma-customer-complaint-Management-system",
-  live_link: "https://img.youtube.com/vi/82e5FCuhC50/maxresdefault.jpg)](https://youtu.be/82e5FCuhC50)",
+  live_link: "https://youtu.be/82e5FCuhC50",
 },
-
   {
     name: "AI Task Platform",
     description:

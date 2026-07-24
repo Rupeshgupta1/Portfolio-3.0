@@ -81,7 +81,7 @@ const projects = [
   ],
   image: aivoaComplaint,
   source_code_link: "https://github.com/Rupeshgupta1/AI-powered-pharma-customer-complaint-Management-system",
-  live_link: "",
+  live_link: "https://img.youtube.com/vi/82e5FCuhC50/maxresdefault.jpg)](https://youtu.be/82e5FCuhC50)",
 },
 
   {

@@ -25,12 +25,14 @@ const ProjectCard = ({
           scale: 1,
           speed: 450,
         }}
-        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
+        className='bg-tertiary border border-slate-200 shadow-card hover:shadow-[0_30px_60px_-20px_rgba(37,99,235,0.4)] transition-shadow duration-300 p-5 rounded-2xl sm:w-[360px] w-full'
       >
         <div className='relative w-full h-[230px]'>
           <img
             src={image}
             alt='project_image'
+            loading='lazy'
+            decoding='async'
             className='w-full h-full object-cover rounded-2xl'
           />
 
@@ -76,7 +78,7 @@ const ProjectCard = ({
         </div>
 
         <div className='mt-5'>
-          <h3 className='text-white font-bold text-[24px]'>{name}</h3>
+          <h3 className='text-ink font-bold text-[24px]'>{name}</h3>
           <p className='mt-2 text-secondary text-[14px]'>{description}</p>
         </div>
 
@@ -110,16 +112,16 @@ const Works = () => {
         >
           Following projects showcase my skills and experience through
           real-world examples of my work. Each project includes{" "}
-          <span className="text-[#915EFF] font-semibold">
+          <span className="text-accent font-semibold">
             links to code repositories and live demos
           </span>
           .
           <br />
-          <span className="text-[#915EFF] font-semibold">
+          <span className="text-accent font-semibold">
             👆 Click the GitHub logo to view the source code
           </span>
           <br />
-          <span className="text-[#915EFF] font-semibold">
+          <span className="text-accent font-semibold">
             🌐 Click the globe logo to see the live demo
           </span>
         </motion.p>

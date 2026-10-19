@@ -1,10 +1,16 @@
 import React from "react";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
 import { motion } from "framer-motion";
 
-import { styles } from "../styles";
+import "react-vertical-timeline-component/style.min.css";
+
+import { styles, timelineStyles } from "../styles";
 import { education } from "../constants";
 import { SectionWrapper } from "../hoc";
-import { fadeIn, textVariant } from "../utils/motion";
+import { textVariant } from "../utils/motion";
 
 // Drop logo files in src/assets/education/ named bseh / vce / mdu (png, jpg, webp or svg).
 // Until a file exists, a text badge is shown instead.
@@ -23,57 +29,76 @@ const getLogo = (key) =>
 const Logo = ({ name }) => {
   const src = getLogo(name);
 
-  return (
-    <div className='w-16 h-16 rounded-full bg-white ring-1 ring-slate-200 shadow-md flex items-center justify-center overflow-hidden'>
-      {src ? (
-        <img
-          src={src}
-          alt={logoLabels[name]}
-          loading='lazy'
-          className='w-full h-full object-contain p-2'
-        />
-      ) : (
-        <span className='text-accent font-bold text-sm'>{logoLabels[name]}</span>
-      )}
-    </div>
+  return src ? (
+    <img
+      src={src}
+      alt={logoLabels[name]}
+      loading='lazy'
+      className='w-full h-full object-contain p-1.5'
+    />
+  ) : (
+    <span className='text-accent font-bold text-[12px]'>{logoLabels[name]}</span>
   );
 };
 
-const EducationCard = ({ index, title, institution, affiliation, period, logos }) => (
-  <motion.div
-    variants={fadeIn("up", "spring", index * 0.3, 0.75)}
-    className='bg-tertiary border border-slate-200 shadow-card hover:shadow-[0_30px_60px_-20px_rgba(37,99,235,0.4)] transition-shadow duration-300 rounded-2xl p-6 flex flex-col'
-  >
-    <div className='flex items-center gap-3'>
-      {logos.map((name) => (
-        <Logo key={name} name={name} />
-      ))}
-    </div>
+const EducationCard = ({ item }) => {
+  const [mainLogo, ...extraLogos] = item.logos;
 
-    <span className='mt-5 w-fit text-xs font-semibold text-accent bg-accent/10 rounded-full px-3 py-1'>
-      {period}
-    </span>
+  return (
+    <VerticalTimelineElement
+      contentStyle={timelineStyles.content}
+      contentArrowStyle={timelineStyles.arrow}
+      date={item.period}
+      iconStyle={{ background: "#ffffff" }}
+      icon={
+        <div className='flex justify-center items-center w-full h-full overflow-hidden rounded-full'>
+          <Logo name={mainLogo} />
+        </div>
+      }
+    >
+      <h3 className='text-ink text-[24px] font-bold'>{item.title}</h3>
+      <p
+        className='text-secondary text-[16px] font-semibold'
+        style={{ margin: 0 }}
+      >
+        {item.institution}
+      </p>
 
-    <h3 className='mt-3 text-ink text-[22px] font-bold'>{title}</h3>
-    <p className='mt-1 text-ink-soft text-[15px] font-medium'>{institution}</p>
-    {affiliation && (
-      <p className='mt-1 text-secondary text-[14px]'>{affiliation}</p>
-    )}
-  </motion.div>
-);
+      {item.affiliation && (
+        <div className='mt-4 flex items-center gap-3'>
+          {extraLogos.map((name) => (
+            <div
+              key={name}
+              className='w-11 h-11 shrink-0 rounded-full bg-white ring-1 ring-slate-200 flex justify-center items-center overflow-hidden'
+            >
+              <Logo name={name} />
+            </div>
+          ))}
+          <p className='text-ink-soft text-[14px]' style={{ margin: 0 }}>
+            {item.affiliation}
+          </p>
+        </div>
+      )}
+    </VerticalTimelineElement>
+  );
+};
 
 const Education = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>My academic journey</p>
+        <p className={`${styles.sectionSubText} text-center`}>
+          My academic journey
+        </p>
         <h2 className={`${styles.sectionHeadText} text-center`}>Education.</h2>
       </motion.div>
 
-      <div className='mt-16 grid gap-7 md:grid-cols-2 lg:grid-cols-3'>
-        {education.map((item, index) => (
-          <EducationCard key={item.title} index={index} {...item} />
-        ))}
+      <div className='mt-20 flex flex-col'>
+        <VerticalTimeline>
+          {education.map((item) => (
+            <EducationCard key={item.title} item={item} />
+          ))}
+        </VerticalTimeline>
       </div>
     </>
   );

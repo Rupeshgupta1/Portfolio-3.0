@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 import "react-vertical-timeline-component/style.min.css";
 
-import { styles } from "../styles";
+import { styles, timelineStyles } from "../styles";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
@@ -15,13 +15,8 @@ import { textVariant } from "../utils/motion";
 const ExperienceCard = ({ experience }) => {
   return (
     <VerticalTimelineElement
-      contentStyle={{
-        background: "#ffffff",
-        color: "#12132a",
-        border: "1px solid #e2e8f0",
-        boxShadow: "0 20px 50px -20px rgba(37, 99, 235, 0.25)",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid #ffffff" }}
+      contentStyle={timelineStyles.content}
+      contentArrowStyle={timelineStyles.arrow}
       date={experience.date}
       iconStyle={{ background: experience.iconBg }}
       icon={

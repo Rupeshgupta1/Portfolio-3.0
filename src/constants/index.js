@@ -87,7 +87,7 @@ const education = [
   {
     title: "B.Tech - Computer Science Engineering",
     institution: "Vaish College of Engineering, Rohtak",
-    affiliation: "Affiliated to Maharishi Dayanand University (MDU), Rohtak",
+    affiliation: "Affiliated to Maharshi Dayanand University (MDU), Rohtak",
     period: "2021 - 2025",
     logos: ["vce", "mdu"],
   },

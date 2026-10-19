@@ -14,4 +14,15 @@ const styles = {
     "sm:text-[18px] text-[14px] text-accent font-semibold uppercase tracking-wider",
 };
 
-export { styles };
+// Shared card look for the vertical timelines (Experience, Education)
+const timelineStyles = {
+  content: {
+    background: "#ffffff",
+    color: "#12132a",
+    border: "1px solid #e2e8f0",
+    boxShadow: "0 20px 50px -20px rgba(37, 99, 235, 0.25)",
+  },
+  arrow: { borderRight: "7px solid #ffffff" },
+};
+
+export { styles, timelineStyles };

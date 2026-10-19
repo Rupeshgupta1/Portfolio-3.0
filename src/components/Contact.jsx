@@ -1,12 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
-import { EarthCanvas } from "./canvas";
+import { useInView } from "../hooks/useInView";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
+const EarthCanvas = lazy(() => import("./canvas/Earth"));
+
 const Contact = () => {
   const formRef = useRef();
+  const [earthRef, earthVisible] = useInView("300px");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -60,7 +63,7 @@ const Contact = () => {
     <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden">
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
+        className="flex-[0.75] bg-white/70 backdrop-blur-md border border-slate-200 shadow-card p-8 rounded-2xl"
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
@@ -71,40 +74,40 @@ const Contact = () => {
           className="mt-12 flex flex-col gap-8"
         >
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Name</span>
+            <span className="text-ink font-medium mb-4">Your Name</span>
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
               placeholder="What's your name?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-ink rounded-lg outline-none border border-slate-200 focus:border-accent font-medium"
               required
             />
           </label>
 
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Email</span>
+            <span className="text-ink font-medium mb-4">Your Email</span>
             <input
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
               placeholder="What's your email?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-ink rounded-lg outline-none border border-slate-200 focus:border-accent font-medium"
               required
             />
           </label>
 
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your Message</span>
+            <span className="text-ink font-medium mb-4">Your Message</span>
             <textarea
               rows="7"
               name="message"
               value={form.message}
               onChange={handleChange}
               placeholder="What do you want to say?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-ink rounded-lg outline-none border border-slate-200 focus:border-accent font-medium"
               required
             />
           </label>
@@ -112,7 +115,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={loading}
-            className="bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl hover:bg-[#915EFF] transition-all duration-200 disabled:opacity-50"
+            className="bg-accent py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-accent/30 rounded-xl hover:bg-accent-dark transition-all duration-200 disabled:opacity-50"
           >
             {loading ? "Sending..." : "Send"}
           </button>
@@ -131,10 +134,15 @@ const Contact = () => {
       </motion.div>
 
       <motion.div
+        ref={earthRef}
         variants={slideIn("right", "tween", 0.2, 1)}
         className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
       >
-        <EarthCanvas />
+        {earthVisible && (
+          <Suspense fallback={null}>
+            <EarthCanvas />
+          </Suspense>
+        )}
       </motion.div>
     </div>
   );

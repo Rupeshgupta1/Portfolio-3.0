@@ -30,7 +30,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 transition-all duration-300 ${scrolled ? "bg-primary shadow-lg shadow-black/20" : "bg-transparent"}`}>
+    <nav className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur shadow-md shadow-slate-200" : "bg-transparent"}`}>
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to='/'
@@ -38,9 +38,9 @@ const Navbar = () => {
           onClick={() => { setActive(""); window.scrollTo(0, 0); }}
         >
           <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex'>
+          <p className='text-ink text-[18px] font-bold cursor-pointer flex'>
             Rupesh Gupta &nbsp;
-            <span className='sm:block hidden text-[#915EFF]'>| MERN Stack Developer</span>
+            <span className='sm:block hidden text-accent'>| MERN Stack Developer</span>
           </p>
         </Link>
 
@@ -50,14 +50,14 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`relative text-[18px] font-medium cursor-pointer transition-colors duration-200 ${
-                active === nav.id ? "text-white" : "text-secondary hover:text-white"
+                active === nav.id ? "text-ink" : "text-secondary hover:text-ink"
               }`}
               onClick={() => setActive(nav.id)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
               {/* Active underline indicator */}
               {active === nav.id && (
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#915EFF] rounded-full" />
+                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent rounded-full" />
               )}
             </li>
           ))}
@@ -68,16 +68,16 @@ const Navbar = () => {
           <img
             src={toggle ? close : menu}
             alt='menu'
-            className='w-[28px] h-[28px] object-contain cursor-pointer'
+            className='w-[28px] h-[28px] object-contain cursor-pointer invert'
             onClick={() => setToggle(!toggle)}
           />
-          <div className={`${!toggle ? "hidden" : "flex"} p-6 bg-black-100 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl border border-[#915EFF]/30`}>
+          <div className={`${!toggle ? "hidden" : "flex"} p-6 bg-white shadow-lg absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl border border-accent/30`}>
             <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.id ? "text-white" : "text-secondary"
+                    active === nav.id ? "text-ink" : "text-secondary"
                   }`}
                   onClick={() => { setActive(nav.id); setToggle(false); }}
                 >

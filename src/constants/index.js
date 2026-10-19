@@ -23,11 +23,12 @@ import ghibliResume from "../assets/ghibli-resume.webp";
 import ghibliFinance from "../assets/ghibli-finance.webp";
 import ghibliPackers from "../assets/ghibli-packers.webp";
 import ghibliPortfolio from "../assets/ghibli-portfolio.webp";
-import aivoaComplaint from "../assets/aivoa-complaint.png";
+import aivoaComplaint from "../assets/aivoa-complaint.webp";
 
 export const navLinks = [
   { id: "about", title: "About" },
   { id: "work", title: "Work" },
+  { id: "education", title: "Education" },
   { id: "contact", title: "Contact" },
 ];
 
@@ -54,10 +55,24 @@ const technologies = [
 
 const experiences = [
   {
+    title: "Front End Development Intern",
+    company_name: "Retax Infotech Private Limited (WFH)",
+    icon: web,
+    iconBg: "#2563eb",
+    date: "Aug 2026 - Present",
+    points: [
+      "Building Kredemy, an AI-powered School ERP & Accounting platform trusted by 500+ schools and managing 50,000+ students.",
+      "Designed and shipped the public landing page, live at kredemy.com.",
+      "End-to-end frontend for core ERP modules (Marksheet, Teacher Management, Asset Management, Leaving Certificate, ID Card Print) at erp.kredemy.com.",
+      "Set up platform authentication with NextAuth (Auth.js) and Keycloak.",
+      "Building the eNACH Console fintech dashboard from the ground up, aligned with the company's product design standards.",
+    ],
+  },
+  {
     title: "MERN Stack & Frontend Developer",
     company_name: "Freelance / Personal Projects",
     icon: web,
-    iconBg: "#383E56",
+    iconBg: "#475569",
     date: "2024 - Present",
     points: [
       "Architected and delivered 5+ production-grade web applications using React, Next.js, Node.js and MongoDB from scratch to deployment.",
@@ -65,6 +80,28 @@ const experiences = [
       "Implemented microservices architecture with Docker, Kubernetes and CI/CD pipelines using GitHub Actions and ArgoCD.",
       "Designed fully responsive, mobile-first UIs with Tailwind CSS and Framer Motion, achieving smooth 60fps animations.",
     ],
+  },
+];
+
+const education = [
+  {
+    title: "B.Tech - Computer Science Engineering",
+    institution: "Vaish College of Engineering, Rohtak",
+    affiliation: "Affiliated to Maharshi Dayanand University (MDU), Rohtak",
+    period: "2021 - 2025",
+    logos: ["vce", "mdu"],
+  },
+  {
+    title: "Senior Secondary (12th)",
+    institution: "Board of School Education Haryana (BSEH)",
+    period: "2019 - 2020",
+    logos: ["bseh"],
+  },
+  {
+    title: "Secondary (10th)",
+    institution: "Board of School Education Haryana (BSEH)",
+    period: "2017 - 2018",
+    logos: ["bseh"],
   },
 ];
 
@@ -155,31 +192,4 @@ const projects = [
   },
 ];
 
-const testimonials = [
-  {
-    testimonial:
-      "Rupesh delivered our AI Resume Builder with exceptional UI/UX and clean code architecture. His ability to integrate complex AI APIs while maintaining a smooth user experience is impressive. Delivered on time and beyond expectations.",
-    name: "Rahul Sharma",
-    designation: "Founder",
-    company: "StartupX",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    testimonial:
-      "Rupesh built our Finance Dashboard with great attention to detail. The role-based access system and data visualizations were exactly what we needed. His code is clean, well-structured and easy to maintain.",
-    name: "Priya Mehta",
-    designation: "Product Manager",
-    company: "FinTech Solutions",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    testimonial:
-      "Rupesh's work on the AI Task Platform demonstrated strong problem-solving skills and deep understanding of modern DevOps practices. The microservices architecture he implemented scaled perfectly under load.",
-    name: "Vikas Kumar",
-    designation: "Tech Lead",
-    company: "Innovate Labs",
-    image: "https://randomuser.me/api/portraits/men/45.jpg",
-  },
-];
-
-export { services, technologies, experiences, projects, testimonials };
+export { services, technologies, experiences, education, projects };

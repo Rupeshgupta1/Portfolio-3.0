@@ -41,18 +41,38 @@ const Logo = ({ name }) => {
   );
 };
 
-const EducationCard = ({ item }) => {
-  const [mainLogo, ...extraLogos] = item.logos;
+// Shown on the empty side of the timeline, opposite the card
+const LogoTile = ({ name }) =>
+  getLogo(name) && (
+    <div className='w-16 h-16 min-[1170px]:w-32 min-[1170px]:h-32 rounded-2xl bg-white ring-1 ring-slate-200 shadow-lg shadow-accent/10 overflow-hidden'>
+      <Logo name={name} />
+    </div>
+  );
 
+const EducationCard = ({ item, index }) => {
   return (
     <VerticalTimelineElement
+      className='min-[1170px]:min-h-[190px]'
       contentStyle={timelineStyles.content}
       contentArrowStyle={timelineStyles.arrow}
-      date={item.period}
+      date={
+        <div
+          className={`flex flex-col gap-3 ${
+            index % 2 ? "items-end" : "items-start"
+          }`}
+        >
+          <span>{item.period}</span>
+          <div className='flex gap-3'>
+            {item.logos.map((name) => (
+              <LogoTile key={name} name={name} />
+            ))}
+          </div>
+        </div>
+      }
       iconStyle={{ background: "#ffffff" }}
       icon={
         <div className='flex justify-center items-center w-full h-full overflow-hidden rounded-full'>
-          <Logo name={mainLogo} />
+          <Logo name={item.logos[0]} />
         </div>
       }
     >
@@ -65,19 +85,9 @@ const EducationCard = ({ item }) => {
       </p>
 
       {item.affiliation && (
-        <div className='mt-4 flex items-center gap-3'>
-          {extraLogos.map((name) => (
-            <div
-              key={name}
-              className='w-11 h-11 shrink-0 rounded-full bg-white ring-1 ring-slate-200 flex justify-center items-center overflow-hidden'
-            >
-              <Logo name={name} />
-            </div>
-          ))}
-          <p className='text-ink-soft text-[14px]' style={{ margin: 0 }}>
-            {item.affiliation}
-          </p>
-        </div>
+        <p className='text-ink-soft text-[14px]' style={{ margin: 0, marginTop: 12 }}>
+          {item.affiliation}
+        </p>
       )}
     </VerticalTimelineElement>
   );
@@ -95,8 +105,8 @@ const Education = () => {
 
       <div className='mt-20 flex flex-col'>
         <VerticalTimeline>
-          {education.map((item) => (
-            <EducationCard key={item.title} item={item} />
+          {education.map((item, index) => (
+            <EducationCard key={item.title} item={item} index={index} />
           ))}
         </VerticalTimeline>
       </div>

@@ -226,6 +226,7 @@ img {
 
 .vertical-timeline-element-date {
   color: #3a3f5c;
+  opacity: 1;
 }
 
 /* Page background: faint blue grid that fades out toward the edges */

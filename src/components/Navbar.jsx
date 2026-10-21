@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
+import ThemeToggle from "./ui/ThemeToggle";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -10,76 +13,109 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       setScrolled(window.scrollY > 100);
-
-      // Active section detection
-      const sections = navLinks.map((nav) => document.getElementById(nav.id));
-      const scrollPos = window.scrollY + 200;
-
-      sections.forEach((section) => {
-        if (!section) return;
-        if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-          setActive(section.id);
-        }
-      });
+      if (window.scrollY <= 100) setActive("");
     };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  // Scrollspy: highlight the section crossing the middle of the viewport.
+  useEffect(() => {
+    const sections = new Map(
+      navLinks
+        .map((nav) => [document.getElementById(nav.id)?.parentElement, nav.id])
+        .filter(([el]) => el)
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(sections.get(entry.target));
+        }),
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+
+    sections.forEach((_, el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <nav className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur shadow-md shadow-slate-200" : "bg-transparent"}`}>
-      <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
+    <nav
+      className={`${styles.paddingX} fixed top-0 z-20 flex w-full items-center py-4 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-line/60 bg-primary/80 shadow-sm backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <div className='mx-auto flex w-full max-w-7xl items-center justify-between'>
         <Link
           to='/'
           className='flex items-center gap-2'
-          onClick={() => { setActive(""); window.scrollTo(0, 0); }}
+          onClick={() => {
+            setActive("");
+            window.scrollTo(0, 0);
+          }}
         >
-          <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-ink text-[18px] font-bold cursor-pointer flex'>
+          <img src={logo} alt='logo' className='h-9 w-9 object-contain' />
+          <p className='flex cursor-pointer text-[18px] font-bold text-ink'>
             Rupesh Gupta &nbsp;
-            <span className='sm:block hidden text-accent'>| MERN Stack Developer</span>
+            <span className='hidden text-accent sm:block'>| MERN Stack Developer</span>
           </p>
         </Link>
 
-        {/* Desktop Nav */}
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`relative text-[18px] font-medium cursor-pointer transition-colors duration-200 ${
-                active === nav.id ? "text-ink" : "text-secondary hover:text-ink"
-              }`}
-              onClick={() => setActive(nav.id)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-              {/* Active underline indicator */}
-              {active === nav.id && (
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-accent rounded-full" />
-              )}
-            </li>
-          ))}
-        </ul>
+        {/* Desktop nav */}
+        <div className='hidden items-center gap-8 sm:flex'>
+          <ul className='flex list-none flex-row gap-8'>
+            {navLinks.map((nav) => (
+              <li
+                key={nav.id}
+                className={`relative cursor-pointer text-[16px] font-medium transition-colors duration-200 ${
+                  active === nav.id ? "text-ink" : "text-secondary hover:text-ink"
+                }`}
+              >
+                <a href={`#${nav.id}`} onClick={() => setActive(nav.id)}>
+                  {nav.title}
+                </a>
+                {active === nav.id && (
+                  <motion.span
+                    layoutId='nav-underline'
+                    className='brand-gradient absolute -bottom-1 left-0 h-0.5 w-full rounded-full'
+                  />
+                )}
+              </li>
+            ))}
+          </ul>
+          <ThemeToggle />
+        </div>
 
-        {/* Mobile Nav */}
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
+        {/* Mobile nav */}
+        <div className='flex flex-1 items-center justify-end gap-3 sm:hidden'>
+          <ThemeToggle />
           <img
             src={toggle ? close : menu}
             alt='menu'
-            className='w-[28px] h-[28px] object-contain cursor-pointer invert'
+            className='h-[28px] w-[28px] cursor-pointer object-contain invert dark:invert-0'
             onClick={() => setToggle(!toggle)}
           />
-          <div className={`${!toggle ? "hidden" : "flex"} p-6 bg-white shadow-lg absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl border border-accent/30`}>
-            <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
+          <div
+            className={`${
+              !toggle ? "hidden" : "flex"
+            } absolute right-0 top-20 z-10 mx-4 my-2 min-w-[140px] rounded-xl border border-line bg-tertiary p-6 shadow-lg`}
+          >
+            <ul className='flex flex-1 list-none flex-col items-start justify-end gap-4'>
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.id ? "text-ink" : "text-secondary"
+                  className={`cursor-pointer text-[16px] font-medium ${
+                    active === nav.id ? "text-accent" : "text-secondary"
                   }`}
-                  onClick={() => { setActive(nav.id); setToggle(false); }}
+                  onClick={() => {
+                    setActive(nav.id);
+                    setToggle(false);
+                  }}
                 >
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>

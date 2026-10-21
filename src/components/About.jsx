@@ -3,24 +3,18 @@ import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { services } from "../constants";
+import { currentlyBuilding, services, stats } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
+import Counter from "./ui/Counter";
 
 const ServiceCard = ({ index, title, icon }) => (
   <Tilt className='xs:w-[250px] w-full'>
     <motion.div
-      variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className='w-full brand-gradient p-[1px] rounded-[20px] shadow-card'
+      variants={fadeIn("up", "spring", index * 0.15, 0.8)}
+      className='w-full brand-gradient p-[1px] rounded-[20px] shadow-card transition-shadow duration-300 hover:shadow-card-hover'
     >
-      <div
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
-      >
+      <div className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'>
         <img
           src={icon}
           alt='web-development'
@@ -33,6 +27,54 @@ const ServiceCard = ({ index, title, icon }) => (
       </div>
     </motion.div>
   </Tilt>
+);
+
+const Stats = () => (
+  <motion.dl
+    variants={fadeIn("up", "tween", 0.2, 0.8)}
+    className='mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4'
+  >
+    {stats.map(({ value, suffix, label }) => (
+      <div
+        key={label}
+        className='rounded-2xl border border-line bg-tertiary/70 p-5 transition-colors hover:border-accent/50'
+      >
+        <dt className='sr-only'>{label}</dt>
+        <dd className='gradient-text w-fit text-[34px] font-black leading-none sm:text-[40px]'>
+          <Counter value={value} suffix={suffix} />
+        </dd>
+        <p aria-hidden='true' className='mt-2 text-[13px] font-medium text-secondary'>
+          {label}
+        </p>
+      </div>
+    ))}
+  </motion.dl>
+);
+
+const CurrentlyBuilding = () => (
+  <motion.div
+    variants={fadeIn("up", "tween", 0.3, 0.8)}
+    className='mt-6 rounded-2xl border border-line bg-tertiary/70 p-6'
+  >
+    <div className='flex items-center gap-2'>
+      <span className='relative flex h-2.5 w-2.5'>
+        <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75' />
+        <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-amber-500' />
+      </span>
+      <p className='text-sm font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400'>
+        Currently building
+      </p>
+    </div>
+
+    <ul className='mt-4 grid gap-4 md:grid-cols-2'>
+      {currentlyBuilding.map(({ name, detail }) => (
+        <li key={name}>
+          <p className='font-bold text-ink'>{name}</p>
+          <p className='mt-1 text-[14px] text-secondary'>{detail}</p>
+        </li>
+      ))}
+    </ul>
+  </motion.div>
 );
 
 const About = () => {
@@ -54,7 +96,10 @@ const About = () => {
         real-world problems. Let's work together to bring your ideas to life!
       </motion.p>
 
-      <div className='mt-20 flex flex-wrap gap-10'>
+      <Stats />
+      <CurrentlyBuilding />
+
+      <div className='mt-16 flex flex-wrap gap-10'>
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

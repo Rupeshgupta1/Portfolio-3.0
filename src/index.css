@@ -2,18 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme tokens (space-separated RGB so Tailwind can add opacity) */
+:root {
+  color-scheme: light;
+  --primary: 246 248 252;
+  --secondary: 90 96 122;
+  --tertiary: 255 255 255;
+  --line: 226 232 240;
+  --ink: 18 19 42;
+  --ink-soft: 58 63 92;
+  --accent: 37 99 235;
+  --accent-dark: 29 78 216;
+  /* brand gradient stops: blue -> violet -> cyan */
+  --g1: 37 99 235;
+  --g2: 124 58 237;
+  --g3: 6 182 212;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --primary: 9 13 26;
+  --secondary: 141 151 181;
+  --tertiary: 17 24 43;
+  --line: 38 48 77;
+  --ink: 238 242 255;
+  --ink-soft: 195 203 227;
+  --accent: 96 143 255;
+  --accent-dark: 59 110 245;
+  --g1: 96 143 255;
+  --g2: 167 139 250;
+  --g3: 34 211 238;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+html {
   scroll-behavior: smooth;
-  color-scheme: light;
 }
 
 body {
-  background-color: #f6f8fc;
-  color: #12132a;
+  background-color: rgb(var(--primary));
+  color: rgb(var(--ink));
+}
+
+/* Brief cross-fade when the theme is toggled */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 .hash-span {
@@ -37,27 +86,33 @@ body {
 }
 
 .accent-gradient {
-  background: linear-gradient(180deg, #2563eb 0%, rgba(37, 99, 235, 0) 100%);
+  background: linear-gradient(180deg, rgb(var(--accent)) 0%, rgb(var(--accent) / 0) 100%);
 }
 
 .brand-gradient {
-  background: linear-gradient(90.13deg, #2563eb 1.9%, #06b6d4 97.5%);
+  background: linear-gradient(90deg, rgb(var(--g1)), rgb(var(--g2)) 55%, rgb(var(--g3)));
 }
 
-.orange-text-gradient {
-  background: #f12711; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to top,
-    #f12711,
-    #f5af19
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to top,
-    #f12711,
-    #f5af19
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* Slowly shifting gradient text (hero name, highlights) */
+.gradient-text {
+  background-image: linear-gradient(
+    90deg,
+    rgb(var(--g1)),
+    rgb(var(--g2)),
+    rgb(var(--g3)),
+    rgb(var(--g1))
+  );
+  background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text {
+    animation: none;
+  }
 }
 
 .green-text-gradient {
@@ -198,11 +253,6 @@ body {
   }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Smooth transitions everywhere */
 * {
   -webkit-font-smoothing: antialiased;
@@ -221,19 +271,117 @@ img {
 
 /* Experience timeline (react-vertical-timeline) light theme overrides */
 .vertical-timeline::before {
-  background: #cbd5e1;
+  background: rgb(var(--line));
 }
 
-.vertical-timeline-element-date {
-  color: #3a3f5c;
-  opacity: 1;
+.vertical-timeline-element-content .vertical-timeline-element-date {
+  color: rgb(var(--ink-soft));
+  opacity: 1; /* library default is .7, which washes out the logo tiles */
 }
 
-/* Page background: faint blue grid that fades out toward the edges */
-.bg-grid {
-  background-image: linear-gradient(to right, rgba(37, 99, 235, 0.09) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(37, 99, 235, 0.09) 1px, transparent 1px);
+.vertical-timeline-element-icon {
+  box-shadow: 0 0 0 4px rgb(var(--primary)), inset 0 2px 0 rgba(0, 0, 0, 0.08),
+    0 3px 0 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Tag gradients need lighter stops on the dark background */
+[data-theme="dark"] .blue-text-gradient {
+  background: linear-gradient(to top, #60a5fa, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="dark"] .green-text-gradient {
+  background: linear-gradient(to top, #2dd4bf, #4ade80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="dark"] .pink-text-gradient {
+  background: linear-gradient(to top, #f472b6, #fb923c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Page background: faint grid that fades out toward the edges */
+.bg-grid,
+.bg-grid-glow {
   background-size: 48px 48px;
+}
+
+.bg-grid {
+  background-image: linear-gradient(to right, rgb(var(--accent) / 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--accent) / 0.09) 1px, transparent 1px);
   -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 35%, transparent 100%);
   mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 35%, transparent 100%);
+}
+
+/* Brighter grid revealed around the cursor (--mx / --my set by Spotlight) */
+.bg-grid-glow {
+  background-image: linear-gradient(to right, rgb(var(--accent) / 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--accent) / 0.45) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(220px circle at var(--mx, -999px) var(--my, -999px), #000, transparent 70%);
+  mask-image: radial-gradient(220px circle at var(--mx, -999px) var(--my, -999px), #000, transparent 70%);
+}
+
+.spotlight-glow {
+  background: radial-gradient(
+    400px circle at var(--mx, -999px) var(--my, -999px),
+    rgb(var(--accent) / 0.1),
+    transparent 70%
+  );
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+
+/* GitHub-style contribution graph (same green scale as github.com) */
+:root {
+  --gh-0: #ebedf0;
+  --gh-1: #9be9a8;
+  --gh-2: #40c463;
+  --gh-3: #30a14e;
+  --gh-4: #216e39;
+  --gh-cell: 11px;
+  --gh-gap: 3px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gh-cell: 15px;
+    --gh-gap: 4px;
+  }
+}
+
+[data-theme="dark"] {
+  --gh-0: #232a3b;
+  --gh-1: #0e4429;
+  --gh-2: #006d32;
+  --gh-3: #26a641;
+  --gh-4: #39d353;
+}
+
+.gh-cell {
+  display: block;
+  border-radius: 2px;
+  outline: 1px solid rgb(0 0 0 / 0.05);
+  outline-offset: -1px;
+  animation: gh-pop 0.45s ease-out both;
+  animation-delay: calc(var(--c, 0) * 12ms);
+}
+
+@keyframes gh-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-cell {
+    animation: none;
+  }
 }

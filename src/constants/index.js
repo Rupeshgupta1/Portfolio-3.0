@@ -29,7 +29,33 @@ export const navLinks = [
   { id: "about", title: "About" },
   { id: "work", title: "Work" },
   { id: "education", title: "Education" },
+  { id: "projects", title: "Projects" },
   { id: "contact", title: "Contact" },
+];
+
+const socials = {
+  github: "https://github.com/Rupeshgupta1",
+  githubUser: "Rupeshgupta1",
+  linkedin: "https://www.linkedin.com/in/rupesh-gupta-8a3abb275/",
+  cv: "/Rupesh_Gupta_CV.pdf",
+};
+
+const roles = [
+  "MERN Stack Developer",
+  "Frontend Developer",
+  "React Developer",
+  "UI Enthusiast",
+];
+
+const currentlyBuilding = [
+  {
+    name: "Kredemy School ERP",
+    detail: "Frontend for core modules: Marksheet, Teacher and Asset Management",
+  },
+  {
+    name: "eNACH Console",
+    detail: "A fintech dashboard, built from the ground up",
+  },
 ];
 
 const services = [
@@ -108,6 +134,7 @@ const education = [
 const projects = [
  {
   name: "AI powered Pharma Complaint Management System",
+    category: "AI",
   description:
     "AI-powered customer complaint intake system for pharmaceutical manufacturing (API/FDF). An AI copilot built on LangGraph and Groq extracts complaint details from natural language or uploaded documents, auto-fills the form, and generates a risk assessment with severity, suggested next action, and CAPA recommendations. Also includes duplicate complaint detection and a completeness checker.",
   tags: [
@@ -122,6 +149,7 @@ const projects = [
 },
   {
     name: "AI Task Platform",
+    category: "Full-stack",
     description:
       "Production-grade AI task processing platform built with microservices architecture. Features Docker containerization, Kubernetes orchestration, and fully automated CI/CD pipeline using GitHub Actions and ArgoCD for zero-downtime deployments.",
     tags: [
@@ -137,6 +165,7 @@ const projects = [
   },
   {
     name: "AI Resume Builder",
+    category: "AI",
     description:
       "Full-stack AI resume builder powered by OpenAI GPT-4. Users generate professional resumes in seconds via a multi-step form with real-time preview and one-click PDF export. Reduced resume creation time by 90% compared to manual methods.",
     tags: [
@@ -151,6 +180,7 @@ const projects = [
   },
   {
     name: "Finance Dashboard",
+    category: "Frontend",
     description:
       "Interactive finance tracker with role-based access control (Admin/Viewer), real-time data search and filtering, Recharts data visualizations, and smooth Framer Motion transitions. Built for financial teams to track and analyze spending patterns.",
     tags: [
@@ -165,6 +195,7 @@ const projects = [
   },
   {
     name: "Packers & Movers Landing Page",
+    category: "Frontend",
     description:
       "High-converting responsive landing page for a logistics brand. Features modern UI/UX design, smooth scroll navigation, optimized for mobile-first experience. Designed to maximize lead generation with clear CTAs and trust-building sections.",
     tags: [
@@ -178,6 +209,7 @@ const projects = [
   },
   {
     name: "Portfolio 3.0",
+    category: "Frontend",
     description:
       "Modern developer portfolio featuring Three.js 3D animations, interactive desktop PC model, scroll-based transitions and fully responsive design. Built with React, Vite and Tailwind CSS — optimized for performance with lazy loading and code splitting.",
     tags: [
@@ -192,4 +224,21 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, education, projects };
+const stats = [
+  { value: projects.length, suffix: "", label: "Projects built" },
+  { value: technologies.length, suffix: "", label: "Technologies" },
+  { value: 500, suffix: "+", label: "Schools on Kredemy" },
+  { value: 50, suffix: "K+", label: "Students managed on Kredemy" },
+];
+
+export {
+  services,
+  technologies,
+  experiences,
+  education,
+  projects,
+  socials,
+  roles,
+  currentlyBuilding,
+  stats,
+};

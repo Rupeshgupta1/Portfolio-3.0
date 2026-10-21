@@ -12,7 +12,7 @@ const Tech = () => {
       {technologies.map((technology) => (
         <LazyMount
           key={technology.name}
-          className='w-28 h-28 rounded-full bg-white/80 ring-1 ring-slate-200 shadow-card'
+          className='w-28 h-28 rounded-full bg-tertiary/80 ring-1 ring-line shadow-card'
         >
           <Suspense fallback={null}>
             <BallCanvas icon={technology.icon} />

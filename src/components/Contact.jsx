@@ -1,9 +1,10 @@
-import { useState, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { useInView } from "../hooks/useInView";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+import Toast from "./ui/Toast";
 
 const EarthCanvas = lazy(() => import("./canvas/Earth"));
 
@@ -16,8 +17,13 @@ const Contact = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  const [toast, setToast] = useState(null);
+
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(null), 5000);
+    return () => clearTimeout(timer);
+  }, [toast]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,8 +33,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(false);
-    setSuccess(false);
+    setToast(null);
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -47,13 +52,13 @@ const Contact = () => {
 
       const result = await response.json();
       if (result.success) {
-        setSuccess(true);
+        setToast({ type: "success", message: "Thank you! I'll get back to you soon." });
         setForm({ name: "", email: "", message: "" });
       } else {
-        setError(true);
+        setToast({ type: "error", message: "Something went wrong. Please try again." });
       }
-    } catch (err) {
-      setError(true);
+    } catch {
+      setToast({ type: "error", message: "Something went wrong. Please try again." });
     } finally {
       setLoading(false);
     }
@@ -63,7 +68,7 @@ const Contact = () => {
     <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden">
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className="flex-[0.75] bg-white/70 backdrop-blur-md border border-slate-200 shadow-card p-8 rounded-2xl"
+        className="flex-[0.75] bg-tertiary/70 backdrop-blur-md border border-line shadow-card p-8 rounded-2xl"
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
@@ -81,7 +86,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your name?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-ink rounded-lg outline-none border border-slate-200 focus:border-accent font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-ink rounded-lg outline-none border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 transition-shadow font-medium"
               required
             />
           </label>
@@ -94,7 +99,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your email?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-ink rounded-lg outline-none border border-slate-200 focus:border-accent font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-ink rounded-lg outline-none border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 transition-shadow font-medium"
               required
             />
           </label>
@@ -107,7 +112,7 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder="What do you want to say?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-ink rounded-lg outline-none border border-slate-200 focus:border-accent font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-ink rounded-lg outline-none border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 transition-shadow font-medium"
               required
             />
           </label>
@@ -119,17 +124,6 @@ const Contact = () => {
           >
             {loading ? "Sending..." : "Send"}
           </button>
-
-          {success && (
-            <p className="text-green-500 font-medium">
-              ✅ Thank you! I'll get back to you soon.
-            </p>
-          )}
-          {error && (
-            <p className="text-red-500 font-medium">
-              ❌ Something went wrong. Please try again.
-            </p>
-          )}
         </form>
       </motion.div>
 
@@ -144,6 +138,7 @@ const Contact = () => {
           </Suspense>
         )}
       </motion.div>
+      <Toast toast={toast} onClose={() => setToast(null)} />
     </div>
   );
 };

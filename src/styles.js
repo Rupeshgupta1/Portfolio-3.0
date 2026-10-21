@@ -17,12 +17,12 @@ const styles = {
 // Shared card look for the vertical timelines (Experience, Education)
 const timelineStyles = {
   content: {
-    background: "#ffffff",
-    color: "#12132a",
-    border: "1px solid #e2e8f0",
-    boxShadow: "0 20px 50px -20px rgba(37, 99, 235, 0.25)",
+    background: "rgb(var(--tertiary))",
+    color: "rgb(var(--ink))",
+    border: "1px solid rgb(var(--line))",
+    boxShadow: "0 20px 50px -20px rgb(var(--accent) / 0.25)",
   },
-  arrow: { borderRight: "7px solid #ffffff" },
+  arrow: { borderRight: "7px solid rgb(var(--tertiary))" },
 };
 
 export { styles, timelineStyles };

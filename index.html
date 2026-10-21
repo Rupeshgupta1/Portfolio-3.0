@@ -3,6 +3,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Apply the saved theme before first paint to avoid a flash -->
+    <script>
+      try {
+        if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark";
+      } catch (e) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
@@ -15,16 +21,16 @@
 
     <!-- Open Graph (for LinkedIn, Facebook, WhatsApp previews) -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rupesh-portfolio.vercel.app/" />
+    <meta property="og:url" content="https://portfolio-3-0-cyan.vercel.app/" />
     <meta property="og:title" content="Rupesh Gupta | MERN Stack & Frontend Developer" />
     <meta property="og:description" content="Hi, I'm Rupesh Gupta — a MERN Stack & Frontend Developer building modern, scalable web applications." />
-    <meta property="og:image" content="/rupesh-og.png" />
+    <meta property="og:image" content="https://portfolio-3-0-cyan.vercel.app/rupesh-og.png" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Rupesh Gupta | MERN Stack & Frontend Developer" />
     <meta name="twitter:description" content="MERN Stack & Frontend Developer building modern web applications." />
-    <meta name="twitter:image" content="/rupesh-og.png" />
+    <meta name="twitter:image" content="https://portfolio-3-0-cyan.vercel.app/rupesh-og.png" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

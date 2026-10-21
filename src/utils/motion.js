@@ -3,12 +3,10 @@ export const textVariant = (delay) => {
     hidden: {
       y: 30,
       opacity: 0,
-      filter: "blur(8px)",
     },
     show: {
       y: 0,
       opacity: 1,
-      filter: "blur(0px)",
       transition: {
         duration: 0.7,
         delay: delay,

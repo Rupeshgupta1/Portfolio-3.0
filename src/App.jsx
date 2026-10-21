@@ -20,9 +20,9 @@ const App = () => (
         <div aria-hidden='true' className='pointer-events-none fixed inset-0 -z-10 overflow-hidden'>
           <div className='bg-grid absolute inset-0' />
           <Spotlight />
-          <div className='absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent/20 blur-3xl animate-float will-change-transform motion-reduce:animate-none' />
-          <div className='absolute top-1/2 -left-32 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl animate-float [animation-delay:-4s] will-change-transform motion-reduce:animate-none dark:bg-violet-500/20' />
-          <div className='absolute -bottom-24 right-1/4 h-80 w-80 rounded-full bg-amber-200/40 blur-3xl animate-float [animation-delay:-7s] will-change-transform motion-reduce:animate-none dark:bg-cyan-400/15' />
+          <div className='absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[radial-gradient(closest-side,rgb(var(--accent)/0.22),transparent)] animate-float will-change-transform motion-reduce:animate-none' />
+          <div className='absolute top-1/2 -left-32 h-96 w-96 rounded-full bg-[radial-gradient(closest-side,rgb(34_211_238/0.22),transparent)] dark:bg-[radial-gradient(closest-side,rgb(139_92_246/0.22),transparent)] animate-float [animation-delay:-4s] will-change-transform motion-reduce:animate-none' />
+          <div className='absolute -bottom-24 right-1/4 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgb(253_230_138/0.55),transparent)] dark:bg-[radial-gradient(closest-side,rgb(34_211_238/0.16),transparent)] animate-float [animation-delay:-7s] will-change-transform motion-reduce:animate-none' />
         </div>
 
         <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>

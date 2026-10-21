@@ -43,7 +43,7 @@ const Footer = () => {
   const [burst, setBurst] = useState(0);
 
   return (
-    <footer className='relative border-t border-line bg-primary/70 backdrop-blur'>
+    <footer className='relative border-t border-line bg-primary/70'>
       <div className='mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row sm:px-16'>
         <p className='flex items-center gap-1.5 text-sm text-secondary'>
           Designed &amp; built with

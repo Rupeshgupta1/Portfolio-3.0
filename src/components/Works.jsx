@@ -58,7 +58,7 @@ const ProjectCard = ({ project, index, onOpen }) => {
             className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
           />
 
-          <span className='absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1 text-xs font-medium text-white backdrop-blur'>
+          <span className='absolute left-3 top-3 rounded-full bg-black/65 px-3 py-1 text-xs font-medium text-white'>
             {project.category}
           </span>
 
@@ -134,7 +134,7 @@ const ProjectModal = ({ project, onClose }) => {
           type='button'
           onClick={onClose}
           aria-label='Close'
-          className='absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur transition-transform hover:scale-110'
+          className='absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/65 text-white transition-transform hover:scale-110'
         >
           ✕
         </button>

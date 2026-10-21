@@ -24,7 +24,7 @@ const ThemeToggle = () => {
       type='button'
       onClick={toggle}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      className='relative flex h-10 w-10 items-center justify-center rounded-full border border-line bg-tertiary/70 text-ink backdrop-blur transition-colors hover:border-accent hover:text-accent'
+      className='relative flex h-10 w-10 items-center justify-center rounded-full border border-line bg-tertiary/70 text-ink transition-colors hover:border-accent hover:text-accent'
     >
       <AnimatePresence mode='wait' initial={false}>
         <motion.span

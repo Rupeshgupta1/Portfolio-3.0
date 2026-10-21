@@ -10,7 +10,7 @@ const Marquee = () => (
       {[...technologies, ...technologies].map((tech, i) => (
         <div
           key={`${tech.name}-${i}`}
-          className='flex items-center gap-2 rounded-full border border-line bg-tertiary/70 px-4 py-2 text-sm font-medium text-ink-soft backdrop-blur'
+          className='flex items-center gap-2 rounded-full border border-line bg-tertiary/70 px-4 py-2 text-sm font-medium text-ink-soft'
         >
           <img src={tech.icon} alt='' className='h-5 w-5 object-contain' loading='lazy' />
           {tech.name}

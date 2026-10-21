@@ -336,3 +336,52 @@ img {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+
+/* GitHub-style contribution graph (same green scale as github.com) */
+:root {
+  --gh-0: #ebedf0;
+  --gh-1: #9be9a8;
+  --gh-2: #40c463;
+  --gh-3: #30a14e;
+  --gh-4: #216e39;
+  --gh-cell: 11px;
+  --gh-gap: 3px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gh-cell: 15px;
+    --gh-gap: 4px;
+  }
+}
+
+[data-theme="dark"] {
+  --gh-0: #232a3b;
+  --gh-1: #0e4429;
+  --gh-2: #006d32;
+  --gh-3: #26a641;
+  --gh-4: #39d353;
+}
+
+.gh-cell {
+  display: block;
+  border-radius: 2px;
+  outline: 1px solid rgb(0 0 0 / 0.05);
+  outline-offset: -1px;
+  animation: gh-pop 0.45s ease-out both;
+  animation-delay: calc(var(--c, 0) * 12ms);
+}
+
+@keyframes gh-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-cell {
+    animation: none;
+  }
+}

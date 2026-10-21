@@ -37,7 +37,7 @@ const Stats = () => (
     {stats.map(({ value, suffix, label }) => (
       <div
         key={label}
-        className='rounded-2xl border border-line bg-tertiary/70 p-5 backdrop-blur transition-colors hover:border-accent/50'
+        className='rounded-2xl border border-line bg-tertiary/70 p-5 transition-colors hover:border-accent/50'
       >
         <dt className='sr-only'>{label}</dt>
         <dd className='gradient-text w-fit text-[34px] font-black leading-none sm:text-[40px]'>
@@ -54,7 +54,7 @@ const Stats = () => (
 const CurrentlyBuilding = () => (
   <motion.div
     variants={fadeIn("up", "tween", 0.3, 0.8)}
-    className='mt-6 rounded-2xl border border-line bg-tertiary/70 p-6 backdrop-blur'
+    className='mt-6 rounded-2xl border border-line bg-tertiary/70 p-6'
   >
     <div className='flex items-center gap-2'>
       <span className='relative flex h-2.5 w-2.5'>
